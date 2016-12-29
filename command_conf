@@ -1,0 +1,18 @@
+[scrm-app]
+path = ~/logstash-2.1.0/start_scrm.sh
+username = scrm
+password = password
+exclude = [
+    "10.78.215.33",
+    "10.78.215.34"
+    ]
+
+[scrm-web]
+path = ~/logstash-2.1.0/start_scrm.sh
+username = scrm
+password = password
+exclude = [
+    "10.78.215.33",
+    "10.78.215.34"
+    ]
+

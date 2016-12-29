@@ -1,0 +1,14 @@
+# 数据采集配置
+[collection]
+# 查询时间段
+count_time = 300
+# 查询间隔时间
+intervals = 30
+index = heart
+hosts = 10.78.174.67:9200,10.78.174.70:9200
+
+# 数据插入配置
+[elasticsearch]
+hosts = 10.78.174.67:9200,10.78.174.70:9200
+index_name = kafka
+doc_type_name = logstash
