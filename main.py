@@ -6,6 +6,7 @@
 
 import json
 import logging
+import yaml
 from Queue import Queue
 from ConfigParser import ConfigParser
 from monitor.mythread import MyThread
@@ -46,20 +47,8 @@ if __name__ == '__main__':
         key_data[section.lower()] = hosts
 
     # command 配置文件读取
-    command_cf = ConfigParser()
-    command_cf.read('command_conf')
-    sections = command_cf.sections()
-
-    command_conf_data = {}
-
-    # command_conf_data = {key --> [username, password, path, [exclude]]}
-    for section in sections:
-        username = command_cf.get(section, 'username')
-        password = command_cf.get(section, 'password')
-        path = command_cf.get(section, 'path')
-        exclude = json.loads(command_cf.get(section, 'exclude'))
-        hosts = [username, password, path, exclude]
-        command_conf_data[section.lower()] = hosts
+    with open('command_conf', 'r') as f:
+        command_conf_data = yaml.load(f)
 
     # 原始数据容器
     raw_queue = Queue(maxsize=1000)

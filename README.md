@@ -10,6 +10,7 @@
 
 * Python 2.7.5
 * Elasticsearch 2.4.0 (Python 库)
+* PyYAML 3.12 (Python 库)
 
 ## 使用方法
 

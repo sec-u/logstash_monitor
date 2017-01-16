@@ -44,16 +44,16 @@ class Command(object):
         ip = data['ip']
 
         if key in self.conf:
-            # 判断是否在排除列表里面
-            if ip in self.conf[key][3]:
-                logger.info("%s %s is in exclude!" % (key, ip))
-                return
-
             logger.info("%s did not respond!" % ip)
 
-            username = self.conf[key][0]
-            password = self.conf[key][1]
-            path = self.conf[key][2]
+            # 判断是否在配置列表里面
+            if ip not in self.conf[key]:
+                logger.info("%s %s isn't in command config file!" % (key, ip))
+                return
+
+            username = self.conf[key][ip][0]
+            password = self.conf[key][ip][1]
+            path = self.conf[key][ip][2]
 
             logger.info("Create thread to %s Command" % ip)
             thread = MyThread(self.command, (ip, username, password, path, logger))
@@ -67,6 +67,5 @@ class Command(object):
 
             # 原始数据整理、拆分
             for i in data:
-
                 # 检查配置文件是否有 key，如有执行命令
                 self.compare(i)
